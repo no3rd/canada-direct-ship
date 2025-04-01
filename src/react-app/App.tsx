@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import emailjs from '@emailjs/browser'
 
 // SVG Logo Component
 const CompanyLogo = () => (
@@ -24,7 +25,32 @@ function App() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         console.log('Form submitted:', formData)
-        // Add your form submission logic here
+
+        // emailjs.init("")
+        emailjs
+            .send(
+                'service_q2ifsyq',
+                'template_9tcabs9',
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message
+                },
+                {
+                    publicKey: 'IkNHHYAOIPa-WunU2'
+                }
+            )
+            .then(
+                function (response) {
+                    console.log('Email sent successfully!', response)
+                    alert('Email sent successfully!')
+                },
+                function (error) {
+                    alert('Failed to send email.')
+                    console.error(error)
+                }
+            )
     }
 
     return (
@@ -42,7 +68,7 @@ function App() {
                 <div className='hero-content'>
                     <h1>Your Trusted Canadian Logistics Partner</h1>
                     <p>Fast, Reliable, and Compliant FBA & Dropshipping Solutions</p>
-                    <button className='cta-button'>Get Started Today</button>
+                    {/* <button className='cta-button'>Get Started Today</button> */}
                 </div>
             </section>
 
