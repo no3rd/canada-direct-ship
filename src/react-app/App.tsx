@@ -33,7 +33,7 @@ function App() {
                 <CompanyLogo />
 
                 <div className='contact-header'>
-                    <p>📞 1-438-409-3210</p>
+                    {/* <p>📞 1-438-409-3210</p> */}
                     <p>✉️ canadadirectship@gmail.com</p>
                 </div>
             </nav>
@@ -125,7 +125,8 @@ function App() {
                     <div className='info-card'>
                         <h3>📞 Contact</h3>
                         <p>
-                            24/7 Support: 1-438-409-3210
+                            {/* 24/7 Support
+                            : 1-438-409-3210 */}
                             <br />
                             Email: canadadirectship.com
                         </p>
@@ -144,8 +145,8 @@ function App() {
             </section>
 
             <footer className='footer'>
-                <p>© 2023 Canada Direct Ship Ltd. - Certified Customs Brokers (CBSA #CDS-2023)</p>
-                <p>Warehouse Facilities: Toronto • Vancouver • Montreal</p>
+                <p>© 2023 Canada Direct Ship Ltd</p>
+                <p>Warehouse Facilities: Alberta</p>
             </footer>
         </div>
     )
