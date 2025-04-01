@@ -1,50 +1,158 @@
-// src/App.tsx
-
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+// SVG Logo Component
+const CompanyLogo = () => (
+    <svg viewBox='0 0 350 50' className='company-logo' xmlns='http://www.w3.org/2000/svg'>
+        <rect x='10' y='15' width='40' height='30' fill='#2B6CB0' rx='5' />
+        <path d='M60 20 L80 20 L90 35 L70 35 Z' fill='#2B6CB0' />
+        <rect x='95' y='20' width='15' height='15' fill='#2B6CB0' rx='3' />
+        <text x='120' y='35' fontFamily='Arial' fontSize='24' fill='#2B6CB0'>
+            Canada Direct Ship
+        </text>
+    </svg>
+)
+
 function App() {
-    const [count, setCount] = useState(0)
-    const [name, setName] = useState('unknown')
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    })
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        console.log('Form submitted:', formData)
+        // Add your form submission logic here
+    }
 
     return (
-        <>
-            <div>
-                <a href='https://vite.dev' target='_blank'>
-                    <img src={viteLogo} className='logo' alt='Vite logo' />
-                </a>
-                <a href='https://react.dev' target='_blank'>
-                    <img src={reactLogo} className='logo react' alt='React logo' />
-                </a>
-            </div>
-            <h1>Canada Direct Ship</h1>
-            <div className='card'>
-                <button onClick={() => setCount(count => count + 1)} aria-label='increment'>
-                    count is {count}
-                </button>
-                <p>
-                    Testing Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <div className='card'>
-                <button
-                    onClick={() => {
-                        fetch('/api/')
-                            .then(res => res.json() as Promise<{ name: string }>)
-                            .then(data => setName(data.name))
+        <div className='container'>
+            <nav className='header'>
+                <div
+                    style={{
+                        width: '100%'
                     }}
-                    aria-label='get name'
                 >
-                    Name from API is: {name}
-                </button>
-                <p>
-                    Edit <code>api/index.ts</code> to change the name
-                </p>
-            </div>
-            <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
-        </>
+                    <CompanyLogo />
+                </div>
+                <div className='contact-header'>
+                    <p>📞 1-438-409-3210</p>
+                    <p>✉️ canadadirectship@gmail.com</p>
+                </div>
+            </nav>
+
+            <section className='hero'>
+                <div className='hero-content'>
+                    <h1>Your Trusted Canadian Logistics Partner</h1>
+                    <p>Fast, Reliable, and Compliant FBA & Dropshipping Solutions</p>
+                    <button className='cta-button'>Get Started Today</button>
+                </div>
+            </section>
+
+            <section className='services'>
+                <div className='service-card'>
+                    <h3>🚚 Amazon FBA Shipping</h3>
+                    <p>
+                        Seamless container receiving and inventory management for Amazon fulfillment
+                        centers
+                    </p>
+                </div>
+                <div className='service-card'>
+                    <h3>📦 Dropshipping Solutions</h3>
+                    <p>Canadian-based fulfillment with 2-day nationwide delivery</p>
+                </div>
+                <div className='service-card'>
+                    <h3>🛳️ Container Management</h3>
+                    <p>Full-service LTL and FTL logistics with customs clearance</p>
+                </div>
+            </section>
+
+            <section className='contact-section'>
+                <form className='contact-form' onSubmit={handleSubmit}>
+                    <h2>Request a Free Consultation</h2>
+                    <div className='form-grid'>
+                        <div className='form-group'>
+                            <label>Name:</label>
+                            <input
+                                type='text'
+                                required
+                                value={formData.name}
+                                onChange={e => setFormData({ ...formData, name: e.target.value })}
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <label>Email:</label>
+                            <input
+                                type='email'
+                                required
+                                value={formData.email}
+                                onChange={e => setFormData({ ...formData, email: e.target.value })}
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <label>Phone:</label>
+                            <input
+                                type='tel'
+                                value={formData.phone}
+                                onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                            />
+                        </div>
+                        <div className='form-group full-width'>
+                            <label>Message:</label>
+                            <textarea
+                                required
+                                value={formData.message}
+                                onChange={e =>
+                                    setFormData({ ...formData, message: e.target.value })
+                                }
+                            />
+                        </div>
+                    </div>
+                    <button type='submit' className='cta-button'>
+                        Send Request
+                    </button>
+                </form>
+
+                <div className='contact-info'>
+                    <h2>Contact Us</h2>
+                    <div className='info-card'>
+                        <h3>📌 Headquarters</h3>
+                        <p>
+                            11307 189 St NW
+                            <br />
+                            Edmonton, AB T5S 0A9
+                            <br />
+                            Canada
+                        </p>
+                    </div>
+                    <div className='info-card'>
+                        <h3>📞 Contact</h3>
+                        <p>
+                            24/7 Support: 1-438-409-3210
+                            <br />
+                            Email: canadadirectship.com
+                        </p>
+                    </div>
+                    <div className='info-card'>
+                        <h3>🕒 Business Hours</h3>
+                        <p>
+                            Mon-Fri: 8AM - 6PM EST
+                            <br />
+                            Sat: 9AM - 4PM EST
+                            <br />
+                            Sun: Closed
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <footer className='footer'>
+                <p>© 2023 Canada Direct Ship Ltd. - Certified Customs Brokers (CBSA #CDS-2023)</p>
+                <p>Warehouse Facilities: Toronto • Vancouver • Montreal</p>
+            </footer>
+        </div>
     )
 }
 
