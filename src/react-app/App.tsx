@@ -30,13 +30,8 @@ function App() {
     return (
         <div className='container'>
             <nav className='header'>
-                <div
-                    style={{
-                        width: '100%'
-                    }}
-                >
-                    <CompanyLogo />
-                </div>
+                <CompanyLogo />
+
                 <div className='contact-header'>
                     <p>📞 1-438-409-3210</p>
                     <p>✉️ canadadirectship@gmail.com</p>
